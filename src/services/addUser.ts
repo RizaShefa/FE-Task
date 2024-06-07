@@ -1,30 +1,8 @@
 import axios from 'axios';
-
+import {FormData} from "../interfaces/users.ts";
 const apiBaseUrl = 'http://localhost:8000/users';
 
-export interface FormData {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
+
 
 export const fetchUsers = () => {
   return axios.get<FormData[]>(apiBaseUrl)

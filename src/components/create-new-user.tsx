@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { FormData, addUser } from '../services/addUser';
+import {  addUser } from '../services/addUser';
 import './create-new-use.css';
+import {FormData} from '../services/addUser'
 
 interface CreateNewUserProps {
   onClose: () => void;
   onAddUser: (user: FormData) => void;
   initialValues: FormData;
+  editingUser: FormData | null;
 }
 
 const CreateNewUser: React.FC<CreateNewUserProps> = ({ onClose, onAddUser }) => {
