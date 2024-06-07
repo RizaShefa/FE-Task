@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "name": "Rei Shefa",
+      "username": "5555",
+      "email": "reishefa@gmail.com",
+      "address": {
+        "street": "Nebi sefa",
+        "suite": "",
+        "city": "lushnja",
+        "zipcode": "65641564",
+        "geo": {
+          "lat": "",
+          "lng": ""
+        }
+      },
+      "phone": "556565",
+      "website": "",
+      "company": {
+        "name": "",
+        "catchPhrase": "",
+        "bs": ""
+      }
+    },
+    {
+      "id": 3,
+      "name": "Rei Shefa",
+      "username": "fdfd",
+      "email": "reishefa@gmail.com",
+      "address": {
+        "street": "Nebi sefa",
+        "suite": "",
+        "city": "lushnja",
+        "zipcode": "65641564",
+        "geo": {
+          "lat": "",
+          "lng": ""
+        }
+      },
+      "phone": "556565",
+      "website": "",
+      "company": {
+        "name": "",
+        "catchPhrase": "",
+        "bs": ""
+      }
+    }
+  ]
+}
