@@ -1,50 +1,24 @@
 {
   "users": [
     {
-      "id": 4,
-      "name": "Rei Shefa",
-      "username": "3rerererere",
+      "name": "Rei Shefa1",
+      "username": "rei",
       "email": "reishefa@gmail.com",
-      "address": {
-        "street": "Nebi sefa",
-        "suite": "",
-        "city": "lushnja",
-        "zipcode": "65641564",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "phone": "556565",
-      "website": "",
-      "company": {
-        "name": "",
-        "catchPhrase": "",
-        "bs": ""
-      }
+      "street": "Nebi sefa",
+      "city": "lushnja",
+      "zipcode": "90001",
+      "phone": "0674874892",
+      "id": 1
     },
     {
-      "id": 5,
       "name": "Rei Shefa",
-      "username": "rerrer",
+      "username": "rererer",
       "email": "reishefa@gmail.com",
-      "address": {
-        "street": "Nebi sefa",
-        "suite": "",
-        "city": "lushnja",
-        "zipcode": "65641564",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "phone": "556565",
-      "website": "",
-      "company": {
-        "name": "",
-        "catchPhrase": "",
-        "bs": ""
-      }
+      "street": "Nebi sefa",
+      "city": "lushnja",
+      "zipcode": "90001",
+      "phone": "0674874892",
+      "id": 2
     }
   ]
 }
