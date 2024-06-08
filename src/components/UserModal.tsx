@@ -1,5 +1,14 @@
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useEffect } from 'react';
+
+interface FormData {
+    name: string;
+    username: string;
+    email: string;
+    street: string;
+    city: string;
+    zipcode: string;
+    phone: string;
+}
 
 interface CreateNewUserProps {
     visible: boolean;
@@ -11,8 +20,8 @@ interface CreateNewUserProps {
 
 export default function UserModal({
     visible,
-    onAddUser,
     onClose,
+    onAddUser,
     onUpdate,
     user,
 }: CreateNewUserProps) {
@@ -24,21 +33,14 @@ export default function UserModal({
     const [zipcode, setZipcode] = useState("");
     const [phone, setPhone] = useState("");
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-	type ValidationRules = RegisterOptions & {
-		value: RegExp;
-		message: string;
-	};
-	
-
     useEffect(() => {
         if (user) {
             setName(user.name);
             setUsername(user.username);
             setEmail(user.email);
-            setStreet(user.address.street);
-            setCity(user.address.city);
-            setZipcode(user.address.zipcode);
+            setStreet(user.street);
+            setCity(user.city);
+            setZipcode(user.zipcode);
             setPhone(user.phone);
         } else {
             setName("");
@@ -51,11 +53,20 @@ export default function UserModal({
         }
     }, [user]);
 
-    const onSubmit = (data) => {
+    const handleSubmit = () => {
+        const newUser: FormData = {
+            name,
+            username,
+            email,
+            street,
+            city,
+            zipcode,
+            phone,
+        };
         if (user) {
-            onUpdate(user.id, data);
+            onUpdate(user.id, newUser);
         } else {
-            onAddUser(data);
+            onAddUser(newUser);
         }
         onClose();
     };
@@ -81,140 +92,112 @@ export default function UserModal({
                             ></button>
                         </div>
                         <div className="modal-body px-4 col-xs-12 text-center">
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="row g-2 align-items-start">
-                                    <div className="col col-sm-6">
-                                        <label htmlFor="name">Name</label>
-                                        <br />
-                                        <input
-                                            id="name"
-                                            {...register("name", { required: "Name is required" })}
-                                            type="text"
-                                            placeholder="Riza Shefa"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        {errors.name && <span className="text-danger">{String(errors.name.message)}</span>}
-                                    </div>
-                                    <div className="col col-sm-6 col-sm-6 flex-column">
-                                        <label htmlFor="username">Username</label>
-                                        <br />
-                                        <input
-                                            id="username"
-                                            {...register("username", { required: "Username is required" })}
-                                            type="text"
-                                            placeholder="Rei"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={username}
-                                            onChange={(e) => setUsername(e.target.value)}
-                                        />
-                                        {errors.username && <span className="text-danger">{String(errors.username.message)}</span>}
-                                    </div>
+                            <div className="row g-2 align-items-start">
+                                <div className="col col-sm-6">
+                                    <label htmlFor="">Name</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="Riza Shefa"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
                                 </div>
+                                <div className="col col-sm-6 col-sm-6 flex-column">
+                                    <label htmlFor="">Username</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="Rei"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                                <div className="row g-2 align-items-start">
-                                    <div className="col col-sm-6">
-                                        <label htmlFor="email">Email</label>
+                            <div className="row g-2 align-items-start">
+                                <div className="col col-sm-6">
+                                    <div>
+                                        <label htmlFor="">Email</label>
                                         <br />
-                                        <input
-										id="email"
-										{...register("email", { 
-											pattern: {
-												value: /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
-												message: "Invalid type of email "
-											},
-										})}
-										type="text"
-										placeholder="reishefa@gmail.com"
-										className="rounded-2 border p-2 mb-3"
-										value={email}
-										onChange={(e) => setEmail(e.target.value)}
-/>
-                                        {errors.email && <span className="text-danger">{String(errors.email.message)}</span>}
                                     </div>
-                                    <div className="col col-sm-6">
-                                        <label htmlFor="street">Street</label>
-                                        <br />
-                                        <input
-                                            id="street"
-                                            {...register("street", { required: "Street is required" })}
-                                            type="text"
-                                            placeholder="Rruga e Elbasanit"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={street}
-                                            onChange={(e) => setStreet(e.target.value)}
-                                        />
-                                        {errors.street && <span className="text-danger">{String(errors.street.message)}</span>}
-                                    </div>
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="reishefa@gmail.com"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </div>
+                                <div className="col col-sm-6">
+                                    <label htmlFor="">Street</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="Rruga e Elbasanit"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={street}
+                                        onChange={(e) => setStreet(e.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                                <div className="row g-2 align-items-start">
-                                    <div className="col col-sm-6">
-                                        <label htmlFor="city">City</label>
-                                        <br />
-                                        <input
-                                            id="city"
-                                            {...register("city", { required: "City is required" })}
-                                            type="text"
-                                            placeholder="Tirana"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={city}
-                                            onChange={(e) => setCity(e.target.value)}
-                                        />
-                                        {errors.city && <span className="text-danger">{String(errors.city.message)}</span>}
-                                    </div>
-                                    <div className="col col-sm-6">
-                                        <label htmlFor="zipcode">Zipcode</label>
-                                        <br />
-                                        <input
-                                            id="zipcode"
-											
-                                            {...register("zipcode", {
-												pattern: {
-													value:/^\d{5}(-\d{4})?$/,
-													message: "Invalid type of zip code"},
-												})}
-                                            type="text"
-                                            placeholder="90001"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={zipcode}
-                                            onChange={(e) => setZipcode(e.target.value)}
-                                        />
-                                        {errors.zipcode && <span className="text-danger">{String(errors.zipcode.message)}</span>}
-                                    </div>
+                            <div className="row g-2 align-items-start">
+                                <div className="col col-sm-6">
+                                    <label htmlFor="">City</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="Tirana"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={city}
+                                        onChange={(e) => setCity(e.target.value)}
+                                    />
                                 </div>
+                                <div className="col col-sm-6">
+                                    <label htmlFor="">Zipcode</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="9001"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={zipcode}
+                                        onChange={(e) => setZipcode(e.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                                <div className="row g-2 align-items-start">
-                                    <div className="col-12 col-sm-6 col-md-6 flex-column align-items-start">
-                                        <label htmlFor="phone">Phone Nr.</label>
-                                        <br />
-                                        <input
-                                            id="phone"
-												{...register("phone", { 
-													pattern: {
-														value: /^(\+|\d)[0-9]{7,16}$/,
-														message: "Invalid type of phone number "
-													},
-												})}
-                                            type="text"
-                                            placeholder="+355674874892"
-                                            className="rounded-2 border p-2 mb-3"
-                                            value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}
-                                        />
-                                        {errors.phone && <span className="text-danger">{String(errors.phone.message)}</span>}
-                                    </div>
+                            <div className="row g-2 align-items-start ">
+                                <div className="col-12 col-sm-6 col-md-6 flex-column align-items-start">
+                                    <label htmlFor="">Phone Nr.</label>
+                                    <br />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="+355674874892"
+                                        className="rounded-2 border p-2 mb-3"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                    />
                                 </div>
-                                <div className="modal-footer border-0 pt-0 mt-0">
-                                    <button
-                                        type="submit"
-                                        className="btn btn-danger px-4"
-                                    >
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div className="modal-footer border-0 pt-0 mt-0">
+                            <button
+                                type="button"
+                                className="btn btn-danger px-4"
+                                onClick={handleSubmit}
+                            >
+                                Save
+                            </button>
                         </div>
                     </div>
                 </div>

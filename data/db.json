@@ -1,23 +1,23 @@
 {
   "users": [
     {
-      "name": "Rei Shefa1",
-      "username": "rei",
+      "name": "Rei Shefa",
+      "username": "rerer",
       "email": "reishefa@gmail.com",
       "street": "Nebi sefa",
       "city": "lushnja",
-      "zipcode": "90001",
-      "phone": "0674874892",
+      "zipcode": "65641564",
+      "phone": "556565",
       "id": 1
     },
     {
       "name": "Rei Shefa",
-      "username": "rererer",
-      "email": "reishefa@gmail.com",
+      "username": "",
+      "email": "",
       "street": "Nebi sefa",
       "city": "lushnja",
-      "zipcode": "90001",
-      "phone": "0674874892",
+      "zipcode": "65641564",
+      "phone": "556565",
       "id": 2
     }
   ]
