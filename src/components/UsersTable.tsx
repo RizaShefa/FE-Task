@@ -3,13 +3,19 @@ import EditIcon from "./icons/EditIcon";
 import DeleteIcon from "./icons/DeleteIcon";
 import "./usersTable.css";
 
-interface Users {
-	id: number;
-	name: string;
-	email: string;
-	phone: string;
-}
 
+
+interface Users {
+	name: string;
+	username: string;
+	email: string;
+	address:{
+		street: string;
+		city: string;
+		zipcode: string;    
+	}
+	phone: string;
+  }
 interface UsersTableProps {
 	users: Users[];
 	onDelete: (id: number) => void;
